@@ -8,6 +8,7 @@ use Psr\EventDispatcher\{
 	StoppableEventInterface
 };
 use GuzzleHttp\Client as HttpClient;
+use AOndra\SlickText\Factories\Http\ClientFactory;
 
 class Client
 {
@@ -17,6 +18,22 @@ class Client
 	 * @var string
 	 */
 	protected static $url = 'https://api.slicktext.com/v1/';
+
+	/**
+	 * Create an instance of a SlickText Client.
+	 *
+	 * @param string $publicKey
+	 * @param string $privateKey
+	 * @param array $options
+	 *
+	 * @return \static
+	 */
+	public static function create(string $publicKey, string $privateKey, array $options = [])
+	{
+		$http = ClientFactory::createClient(static::$url, $publicKey, $privateKey, $options);
+
+		return new static($http);
+	}
 
 	/**
 	 * Guzzle HTTP Client

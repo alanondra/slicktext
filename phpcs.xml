@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<ruleset name="PSR2TAB">
+	<description>PSR-2 with Tabbed Indentation</description>
+
+	<rule ref="PSR2">
+		<exclude name="Generic.Files.LineLength"/>
+		<exclude name="Generic.WhiteSpace.DisallowTabIndent"/>
+		<exclude name="PSR2.Namespaces.UseDeclaration"/>
+	</rule>
+
+	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent"/>
+
+	<rule ref="Generic.WhiteSpace.ScopeIndent">
+		<properties>
+			<property name="indent" value="4"/>
+			<property name="tabIndent" value="true"/>
+		</properties>
+	</rule>
+
+	<rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+
+	<file>src</file>
+	<file>tests</file>
+</ruleset>

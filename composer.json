@@ -1,0 +1,27 @@
+{
+	"name": "alanondra/slicktext",
+	"description": "SlickText Library",
+	"type": "library",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Alan Ondra",
+			"email": "r.alan.ondra@gmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"AOndra\\SlickText\\": "src/"
+		}
+	},
+	"require": {
+		"php": "^7.0",
+		"guzzlehttp/guzzle": "^6.3",
+		"psr/log": "^1.1",
+		"psr/event-dispatcher": "^1.0"
+	},
+	"require-dev": {
+		"squizlabs/php_codesniffer": "^3.4",
+		"phpunit/phpunit": "^8.1"
+	}
+}

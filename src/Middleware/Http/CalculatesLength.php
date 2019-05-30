@@ -2,6 +2,8 @@
 
 namespace AOndra\SlickText\Middleware\Http;
 
+use Psr\Http\Message\RequestInterface;
+
 class CalculatesLength extends Middleware
 {
 	/**

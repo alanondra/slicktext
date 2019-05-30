@@ -2,7 +2,9 @@
 
 namespace AOndra\SlickText\Middleware\Http;
 
-class AuthenticatesRequest
+use Psr\Http\Message\RequestInterface;
+
+class AuthenticatesRequest extends Middleware
 {
 	/**
 	 * @var string

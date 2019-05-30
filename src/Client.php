@@ -9,7 +9,13 @@ use Psr\EventDispatcher\{
 };
 use GuzzleHttp\Client as HttpClient;
 use AOndra\SlickText\Factories\Http\ClientFactory;
+use AOndra\SlickText\Repositories\{
+	AccountRepository
+};
 
+/**
+ * @property-read \AOndra\SlickText\Repositories\AccountRepository $account Account Repository
+ */
 class Client
 {
 	/**
@@ -57,6 +63,15 @@ class Client
 	protected $dispatcher;
 
 	/**
+	 * Mapping of properties to repository types.
+	 *
+	 * @var array
+	 */
+	protected $repositories = [
+		'account' => AccountRepository::class,
+	];
+
+	/**
 	 * Construct an instance of a SlickText Client.
 	 *
 	 * @param \GuzzleHttp\Client $http
@@ -64,6 +79,40 @@ class Client
 	public function __construct(HttpClient $http)
 	{
 		$this->http = $http;
+
+		foreach ($this->repositories as $name => $className) {
+			$this->repositories[$name] = new $className($this->http);
+		}
+	}
+
+	/**
+	 * Magic method to handle isset or empty calls on inaccessible properties.
+	 *
+	 * @param string $property
+	 *
+	 * @return mixed
+	 */
+	public function __isset($property)
+	{
+		$value = $this->__get($property);
+
+		return !empty($value);
+	}
+
+	/**
+	 * Magic method to handle accessing inaccessible properties.
+	 *
+	 * @param string $property
+	 *
+	 * @return mixed
+	 */
+	public function __get($property)
+	{
+		if (key_exists($property, $this->repositories)) {
+			return $this->repositories[$property];
+		}
+
+		return null;
 	}
 
 	/**

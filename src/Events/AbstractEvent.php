@@ -2,16 +2,34 @@
 
 namespace AOndra\SlickText\Events;
 
+use Carbon\Carbon;
 use Psr\EventDispatcher\StoppableEventInterface;
 
-abstract class Event implements StoppableEventInterface
+abstract class AbstractEvent implements StoppableEventInterface
 {
+	/**
+	 * Event timestamp.
+	 *
+	 * @var \Carbon\Carbon
+	 */
+	protected $timestamp;
+
 	/**
 	 * Indicator for if Event propogation is stopped.
 	 *
 	 * @var boolean
 	 */
 	protected $stopped = false;
+
+	/**
+	 * Construct an Event.
+	 *
+	 * @param \Carbon\Carbon $timestamp
+	 */
+	public function __construct(Carbon $timestamp)
+	{
+		$this->timestamp = $timestamp;
+	}
 
 	/**
 	 * Is propagation stopped?
@@ -50,5 +68,31 @@ abstract class Event implements StoppableEventInterface
 		$this->stopped = false;
 
 		return $this;
+	}
+
+	/**
+	 * Magic method to handle accessing inaccessible properties.
+	 *
+	 * @param string $property
+	 *
+	 * @return mixed
+	 */
+	public function __get($property)
+	{
+		return (property_exists($this, $property))
+			? $this->$property
+			: null;
+	}
+
+	/**
+	 * Magic method to handle isset or empty calls on inaccessible properties.
+	 *
+	 * @param string $property
+	 *
+	 * @return mixed
+	 */
+	public function __isset($property)
+	{
+		return isset($this->$property);
 	}
 }

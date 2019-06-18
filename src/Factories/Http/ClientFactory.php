@@ -25,7 +25,7 @@ class ClientFactory
 	 *
 	 * @return \GuzzleHttp\Client
 	 */
-	public static function createClient(string $url, string $publicKey, string $privateKey, array $options = [])
+	public static function build(string $url, string $publicKey, string $privateKey, array $options = [])
 	{
 		$config = static::getClientOptions($options);
 

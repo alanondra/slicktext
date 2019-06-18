@@ -10,15 +10,15 @@ class AccountFactory
 	use ParsesDates;
 
 	/**
-	 * Create an Account object.
+	 * Build an Account object from an array of data.
 	 *
 	 * @param array $data
 	 *
-	 * @return \stdClass
+	 * @return object
 	 */
-	public static function create(array $data)
+	public static function build(array $data)
 	{
-		$account = new stdClass;
+		$account = (object)[];
 
 		foreach ($data as $property => $value) {
 			$prop = lcfirst($property);

@@ -7,15 +7,15 @@ use stdClass;
 class PlanFactory
 {
 	/**
-	 * Create a Plan object.
+	 * Build a Plan object from an array of data.
 	 *
 	 * @param array $data
 	 *
-	 * @return \stdClass
+	 * @return object
 	 */
-	public static function create(array $data)
+	public static function build(array $data)
 	{
-		$plan = new stdClass;
+		$plan = (object)[];
 
 		foreach ($data as $property => $value) {
 			$prop = lcfirst($property);

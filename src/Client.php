@@ -36,7 +36,7 @@ class Client
 	 */
 	public static function create(string $publicKey, string $privateKey, array $options = [])
 	{
-		$http = ClientFactory::createClient(static::$url, $publicKey, $privateKey, $options);
+		$http = ClientFactory::build(static::$url, $publicKey, $privateKey, $options);
 
 		return new static($http);
 	}

@@ -7,15 +7,15 @@ use stdClass;
 class UsageFactory
 {
 	/**
-	 * Create a Usage object.
+	 * Build a Usage object from an array of data.
 	 *
 	 * @param array $data
 	 *
-	 * @return \stdClass
+	 * @return object
 	 */
-	public static function create(array $data)
+	public static function build(array $data)
 	{
-		$usage = new stdClass;
+		$usage = (object)[];
 
 		foreach ($data as $property => $value) {
 			$prop = lcfirst($property);

@@ -11,24 +11,24 @@ use AOndra\SlickText\Factories\Account\{
 };
 
 /**
- * @property-read \stdClass $account
- * @property-read \stdClass $plan
+ * @property-read object $account
+ * @property-read object $plan
  * @property-read array $rollovers
- * @property-read \stdClass $usage
+ * @property-read object $usage
  */
 class GetAccountResponse extends Response
 {
 	/**
 	 * Account Information
 	 *
-	 * @var \stdClass
+	 * @var object
 	 */
 	protected $account;
 
 	/**
 	 * Plan Information
 	 *
-	 * @var \stdClass
+	 * @var object
 	 */
 	protected $plan;
 
@@ -42,7 +42,7 @@ class GetAccountResponse extends Response
 	/**
 	 * Usage Information
 	 *
-	 * @var \stdClass
+	 * @var object
 	 */
 	protected $usage;
 
@@ -62,13 +62,13 @@ class GetAccountResponse extends Response
 		foreach ($factories as $property => $factory) {
 			if (key_exists($property, $data)) {
 				$value = $data[$property];
-				$this->$property = $factory::create($value);
+				$this->$property = $factory::build($value);
 			}
 		}
 
 		if (key_exists('rollovers', $data)) {
 			foreach ($data['rollovers'] as $rollover) {
-				$this->rollovers[] = RolloverFactory::create($rollover);
+				$this->rollovers[] = RolloverFactory::build($rollover);
 			}
 		}
 	}

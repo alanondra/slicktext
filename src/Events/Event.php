@@ -7,7 +7,7 @@ use Psr\EventDispatcher\StoppableEventInterface;
 abstract class Event implements StoppableEventInterface
 {
 	/**
-	 * Event Propogation Stopped
+	 * Indicator for if Event propogation is stopped.
 	 *
 	 * @var boolean
 	 */
@@ -26,5 +26,29 @@ abstract class Event implements StoppableEventInterface
 	public function isPropagationStopped() : bool
 	{
 		return $this->stopped;
+	}
+
+	/**
+	 * Stop Event propagation.
+	 *
+	 * @return $this
+	 */
+	public function stop()
+	{
+		$this->stopped = true;
+
+		return $this;
+	}
+
+	/**
+	 * Resume Event propagation.
+	 *
+	 * @return $this
+	 */
+	public function resume()
+	{
+		$this->stopped = false;
+
+		return $this;
 	}
 }

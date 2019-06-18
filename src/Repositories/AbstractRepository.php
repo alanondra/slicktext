@@ -4,8 +4,9 @@ namespace AOndra\SlickText\Repositories;
 
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Client as HttpClient;
+use AOndra\SlickText\Contracts\RepositoryInterface;
 
-abstract class Repository implements RepositoryInterface
+abstract class AbstractRepository implements RepositoryInterface
 {
 	/**
 	 * GuzzleHttp Client
@@ -31,10 +32,16 @@ abstract class Repository implements RepositoryInterface
 	 *
 	 * @return boolean
 	 */
-	protected function isSuccessful(ResponseInterface $response)
+	protected function isValid(ResponseInterface $response)
 	{
 		$status = $response->getStatusCode();
 
-		return ($status >= 200 && $status < 300);
+		if ($status < 200 || $status >= 300) {
+			return false;
+		}
+
+		$type = $response->getHeaderLine('Content-Type');
+
+		return (stripos($type, 'application/json') !== false);
 	}
 }

@@ -2,9 +2,10 @@
 
 namespace AOndra\SlickText\Repositories;
 
+use AOndra\SlickText\Exceptions\InvalidResponseException;
 use AOndra\SlickText\Responses\Account\GetAccountResponse;
 
-class AccountRepository extends Repository
+class AccountRepository extends AbstractRepository
 {
 	/**
 	 * Get the Account Resource.
@@ -14,6 +15,10 @@ class AccountRepository extends Repository
 	public function get()
 	{
 		$response = $this->http->get('account');
+
+		if (!$this->isValid($response)) {
+			throw new InvalidResponseException('Invalid response for account information request');
+		}
 
 		return new GetAccountResponse($response);
 	}

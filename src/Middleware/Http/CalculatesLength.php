@@ -4,7 +4,7 @@ namespace AOndra\SlickText\Middleware\Http;
 
 use Psr\Http\Message\RequestInterface;
 
-class CalculatesLength extends Middleware
+class CalculatesLength extends AbstractMiddleware
 {
 	/**
 	 * Modify the HTTP Request.

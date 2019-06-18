@@ -2,9 +2,9 @@
 
 namespace AOndra\SlickText\Factories\Account;
 
-use stdClass;
+use AOndra\SlickText\Factories\AbstractFactory;
 
-class UsageFactory
+class UsageFactory extends AbstractFactory
 {
 	/**
 	 * Build a Usage object from an array of data.

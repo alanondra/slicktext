@@ -1,6 +1,6 @@
 <?php
 
-namespace AOndra\SlickText\Middleware\Http;
+namespace AOndra\SlickText\Contracts\Http;
 
 interface MiddlewareInterface
 {

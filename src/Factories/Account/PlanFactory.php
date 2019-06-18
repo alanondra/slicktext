@@ -2,9 +2,9 @@
 
 namespace AOndra\SlickText\Factories\Account;
 
-use stdClass;
+use AOndra\SlickText\Factories\AbstractFactory;
 
-class PlanFactory
+class PlanFactory extends AbstractFactory
 {
 	/**
 	 * Build a Plan object from an array of data.

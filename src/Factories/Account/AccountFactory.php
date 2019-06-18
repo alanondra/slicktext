@@ -2,13 +2,10 @@
 
 namespace AOndra\SlickText\Factories\Account;
 
-use stdClass;
-use AOndra\SlickText\Concerns\ParsesDates;
+use AOndra\SlickText\Factories\AbstractFactory;
 
-class AccountFactory
+class AccountFactory extends AbstractFactory
 {
-	use ParsesDates;
-
 	/**
 	 * Build an Account object from an array of data.
 	 *

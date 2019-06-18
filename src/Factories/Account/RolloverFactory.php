@@ -2,13 +2,10 @@
 
 namespace AOndra\SlickText\Factories\Account;
 
-use stdClass;
-use AOndra\SlickText\Concerns\ParsesDates;
+use AOndra\SlickText\Factories\AbstractFactory;
 
-class RolloverFactory
+class RolloverFactory extends AbstractFactory
 {
-	use ParsesDates;
-
 	/**
 	 * Build a Rollover object from an array of data.
 	 *

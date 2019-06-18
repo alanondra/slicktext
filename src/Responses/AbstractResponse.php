@@ -4,12 +4,13 @@ namespace AOndra\SlickText\Responses;
 
 use Throwable;
 use Psr\Http\Message\ResponseInterface as HttpResponseInterface;
+use AOndra\SlickText\Contracts\ResponseInterface;
 use AOndra\SlickText\Exceptions\InvalidResponseException;
 
 /**
  * @property-read \Psr\Http\Message\ResponseInterface $original Original HTTP Response
  */
-abstract class Response implements ResponseInterface
+abstract class AbstractResponse implements ResponseInterface
 {
 	/**
 	 * Original HTTP Response
@@ -21,14 +22,14 @@ abstract class Response implements ResponseInterface
 	/**
 	 * Response meta data, or null if not available.
 	 *
-	 * @var \stdClass
+	 * @var object
 	 */
 	protected $meta = null;
 
 	/**
 	 * Response link information, or null if not available.
 	 *
-	 * @var \stdClass
+	 * @var object
 	 */
 	protected $links = null;
 
@@ -49,18 +50,6 @@ abstract class Response implements ResponseInterface
 		$this->original = $response;
 
 		$this->parse($this->getContent());
-	}
-
-	/**
-	 * Check if a Response is successful.
-	 *
-	 * @return boolean
-	 */
-	public function isSuccessful() : bool
-	{
-		$status = $this->original->getStatusCode();
-
-		return ($status >= 200 && $status < 300);
 	}
 
 	/**

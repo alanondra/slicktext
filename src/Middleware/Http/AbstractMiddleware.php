@@ -3,8 +3,9 @@
 namespace AOndra\SlickText\Middleware\Http;
 
 use Psr\Http\Message\RequestInterface;
+use AOndra\SlickText\Contracts\Http\MiddlewareInterface;
 
-abstract class Middleware implements MiddlewareInterface
+abstract class AbstractMiddleware implements MiddlewareInterface
 {
 	/**
 	 * Modify the HTTP Request.
@@ -26,9 +27,9 @@ abstract class Middleware implements MiddlewareInterface
 	public function __invoke(callable $next)
 	{
 		return function (RequestInterface $request, array $options = []) use ($next) {
-			$request = $this->modify($request, $options);
+			$modified = $this->modify($request, $options);
 
-			return $next($request, $options);
+			return $next($modified, $options);
 		};
 	}
 }

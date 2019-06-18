@@ -2,7 +2,7 @@
 
 namespace AOndra\SlickText\Responses\Account;
 
-use AOndra\SlickText\Responses\Response;
+use AOndra\SlickText\Responses\AbstractResponse;
 use AOndra\SlickText\Factories\Account\{
 	AccountFactory,
 	PlanFactory,
@@ -16,7 +16,7 @@ use AOndra\SlickText\Factories\Account\{
  * @property-read array $rollovers
  * @property-read object $usage
  */
-class GetAccountResponse extends Response
+class GetAccountResponse extends AbstractResponse
 {
 	/**
 	 * Account Information

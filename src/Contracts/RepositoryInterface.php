@@ -1,6 +1,6 @@
 <?php
 
-namespace AOndra\SlickText\Repositories;
+namespace AOndra\SlickText\Contracts;
 
 interface RepositoryInterface
 {

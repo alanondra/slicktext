@@ -1,6 +1,6 @@
 <?php
 
-namespace AOndra\SlickText\Adapters;
+namespace AOndra\SlickText\Contracts;
 
 interface AdapterInterface
 {

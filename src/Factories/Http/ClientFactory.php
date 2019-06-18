@@ -60,7 +60,7 @@ class ClientFactory
 		];
 
 		$required = [
-			RequestOptions::HTTP_ERRORS => false,
+			RequestOptions::HTTP_ERRORS => true,
 			RequestOptions::SYNCHRONOUS => true,
 		];
 
